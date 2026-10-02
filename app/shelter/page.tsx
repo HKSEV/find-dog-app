@@ -5,7 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 import * as S from "./Shelter.styled";
 import * as A from "@/css/style.styles";
-// import Header from "../components/Header"
+// import Header from "../components/Header";
 import Footer from "../components/Footer";
 // MUI
 import {
