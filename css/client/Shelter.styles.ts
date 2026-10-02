@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import * as C from "../common/Common.styles"
 
 export const ShelterHeader = styled.header`
   background-color: #FFF;
@@ -211,24 +212,34 @@ export const LocationText = styled.div`
 `;
 
 export const ListSection = styled.section`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  ${C.FlexColumn}
+  width: 100%;
   background-color: #F4F5F7;
+  gap: 8px;
+  padding: 12px;
+  box-sizing: border-box;
 `;
 
-export const AnimalCard = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+export const ShelterAnimalCard = styled.div`
+  display: flex !important;
+  flex-direction: row !important; /* 💡 세로 배치를 강제로 가로(row) 배치로 변경 */
+  align-items: flex-start !important;
+  gap: 14px !important;
+  width: 100% !important;        /* 💡 160px 고정 너비를 강제로 풀고 꽉 채움 */
+  max-width: 100% !important;
+  min-width: 0 !important;
+  flex-shrink: 1 !important;     /* 💡 0으로 고정된 것을 풀어줌 */
+  background-color: #fff !important;
+  border-radius: 12px !important;
+  padding: 14px !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06) !important;
 `;
 
 export const AnimalImgBox = styled.div`
-  width: 110px;
-  height: 110px;
-  border-radius: 8px;
+  width: 95px;
+  height: 95px;
+  border-radius: 10px;
   overflow: hidden;
   background-color: #EEE;
   flex-shrink: 0;
@@ -243,6 +254,7 @@ export const AnimalImgBox = styled.div`
 export const AnimalInfo = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
   width: 100%;
 `;
 
@@ -276,8 +288,8 @@ export const Badge = styled.span<{$type?: "status" | "female" | "male" | "unknow
 
 export const InfoGrid = styled.div`
   display: grid;
-  grid-template-columns: 60px 1fr;
-  row-gap: 60px;
+  grid-template-columns: 70px 1fr;
+  gap: 6px 8px;
   font-size: 0.85rem;
   .label { color: #888; }
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import StyledComponentsRegistry from "@/lib/registry";
-import { GlobalStyle } from "./admin/css/GlobalStyles";
+import { GlobalStyle } from "../css/GlobalStyles";
 
 export const metadata: Metadata = {
   title: "어서 찾아주개",

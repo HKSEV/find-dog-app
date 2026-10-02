@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
-import * as S from "./Shelter.styled";
-import * as A from "@/css/style.styles";
+import * as S from "@/css/style.styles";
 // import Header from "../components/Header";
 import Footer from "../components/Footer";
 // MUI
@@ -59,15 +58,15 @@ export default function ShelterPage() {
   };
 
   return (
-    <A.AppWraper>
+    <S.AppWraper>
       {/* <Header title="보호소"/> */}
-      <A.Header>
-        <A.Logo>보호소</A.Logo>
+      <S.Header>
+        <S.Logo>보호소</S.Logo>
         <NotificationsNoneIcon fontSize="large"/>
-      </A.Header>
+      </S.Header>
 
-      <A.Container>
-        <A.Mt70/>
+      <S.Container>
+        <S.Mt70/>
 
         <S.TabContainer>
           {["보호동물", "보호소 찾기", "추천 입양 동물"].map((tab) => (
@@ -118,7 +117,7 @@ export default function ShelterPage() {
 
         <S.RecommendSection>
           <S.SectionHeader>
-            <A.H2Size20>이달의 추천 입양 동물</A.H2Size20>
+            <S.H2Size20>이달의 추천 입양 동물</S.H2Size20>
             <Link href="#more" className="more-link">
               더보기<ChevronRightIcon sx={{fontSize:18}}/>
             </Link>
@@ -146,7 +145,7 @@ export default function ShelterPage() {
             </div>
           ) : (
             animals.map((animal) => (
-              <S.AnimalCard key={animal.id}>
+              <S.ShelterAnimalCard key={animal.id}>
                 <S.AnimalImgBox>
                   <img
                   src={getFullImageUrl(animal.imageUrl)}
@@ -175,13 +174,13 @@ export default function ShelterPage() {
                     <span className="value">{animal.rescuelocation}</span>
                   </S.InfoGrid>
                 </S.AnimalInfo>
-              </S.AnimalCard>
+              </S.ShelterAnimalCard>
             ))
           )}
         </S.ListSection>
-      </A.Container>
+      </S.Container>
 
       <Footer activeNo={2}/>
-    </A.AppWraper>
+    </S.AppWraper>
   );
 };

@@ -1,28 +1,7 @@
 import styled, { css } from "styled-components";
 import { PlayArrow as PlayArrowIcon } from "@mui/icons-material";
 
-export const AppWraper = styled.div`
-  display: flex;
-  justify-content: center;
-  background-color: #333;
-  min-height: 100vh;
-  width: 100%;
-`;
-
-export const Container = styled.div`
-  width: 100%;
-  max-width: 480px;
-  min-height: 100vh;
-  background-color: #FFF;
-  position: relative;
-  padding-bottom: 70px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-
-  @media (max-width: 480px) {
-    width: 100%;
-    box-shadow: none;
-  }
-`;
+export * from "./layout/Layout.styles";
 
 export const ContainerColumn = styled.div`
   display: flex;
@@ -31,48 +10,6 @@ export const ContainerColumn = styled.div`
   background-color: white;
   width: 100%;
   max-width: 480px;
-`;
-
-export const Header = styled.header`
-  width: 100%;
-  position: fixed;
-  z-index: 99999;
-  // 화면 정중앙 배치 공식(내가 최대치의 크기를 정했을 때)
-  left: 50%;
-  transform: translateX(-50%);
-  top: 0;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 16px 20px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #FFF;
-
-  max-width: 480px;
-
-  @media (max-iwdth: 480px) {
-    max-width: 480px;
-  }
-  @media (max-iwdth: 440px) {
-    max-width: 440px;
-  }
-  @media (max-iwdth: 430px) {
-    max-width: 430px;
-  }
-  @media (max-iwdth: 390px) {
-    max-width: 390px;
-  }
-  @media (max-iwdth: 280px) {
-    max-width: 280px;
-  }
-`;
-
-export const Logo = styled.h4`
-  margin: 0;
-  font-weight: 700;
-  color: #F28C28;
 `;
 
 export const Banner = styled.section`
@@ -186,33 +123,6 @@ export const AnimalCard = styled.div`
   background-color: white;
 `;
 
-export const CardImage = styled.img`
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 15px 15px 0 0;
-`;
-
-export const CardBody = styled.div`
-  padding: 12px;
-`;
-
-export const CardTitle = styled.p`
-  font-weight: bold;
-  font-size: 13px;
-  margin: 0 0 4px 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-export const CardDesc = styled.p`
-  font-size: 11px;
-  color: #6C757D;
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
 export const StatusText = styled.div`
   width: 100%;
   text-align: center;
@@ -240,32 +150,32 @@ export const StatLabel = styled.span<{$color: string}>`
   margin-right: 4px;
 `;
 
-export const BottomNav = styled.nav`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  max-width: 480px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #FFF;
-  border-top: 1px solid #DEE2E6;
-  padding: 8px 0;
-  z-index: 1000;
-`;
+// export const BottomNav = styled.nav`
+//   position: fixed;
+//   bottom: 0;
+//   width: 100%;
+//   max-width: 480px;
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+//   background-color: #FFF;
+//   border-top: 1px solid #DEE2E6;
+//   padding: 8px 0;
+//   z-index: 1000;
+// `;
 
-export const NavItem = styled.div<{$active?: boolean}>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: ${props => props.$active ? "#F28C28" : "#6C757D"};
-  cursor: pointer;
+// export const NavItem = styled.div<{$active?: boolean}>`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   color: ${props => props.$active ? "#F28C28" : "#6C757D"};
+//   cursor: pointer;
 
-  span {
-    font-size: 10px;
-    margin-top: 4px;
-  }
-`;
+//   span {
+//     font-size: 10px;
+//     margin-top: 4px;
+//   }
+// `;
 
 export const TopFlexBasic = styled.div`
   padding: 15px 10px;
@@ -743,3 +653,5 @@ export const YoutubePlayIcon = styled(PlayArrowIcon)`
 `;
 
 // motion
+export * from "./client/Shelter.styles";
+export * from "./client/MissingReport.styles";
