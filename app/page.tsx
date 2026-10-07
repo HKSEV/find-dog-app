@@ -17,7 +17,7 @@ import {
 } from "@mui/icons-material";
 import Footer from "./components/Footer";
 
-import * as S from "../css/style.styles";
+import * as S from "../css/Style.styles";
 
 // 1.스프링부트에서 넘어올 동물 데이터의 타입(Interface) 정의
 interface Animal {

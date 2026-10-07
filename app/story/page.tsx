@@ -9,7 +9,7 @@ import {
   ChevronRight as ChevronRightIcon
 } from "@mui/icons-material";
 import { Plus, MessageSquare, Share2, Eye } from "lucide-react";
-import * as S from "../../css/style.styles";
+import * as S from "../../css/Style.styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 

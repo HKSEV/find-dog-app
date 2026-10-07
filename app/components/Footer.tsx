@@ -11,7 +11,7 @@ import {
   PersonOutlined as PersonOutlineIcon,
 } from "@mui/icons-material";
 
-import * as S from "../../css/style.styles";
+import * as S from "../../css/Style.styles";
 
 interface FooterProps {
   activeNo: number;

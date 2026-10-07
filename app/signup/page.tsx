@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useRef } from "react";
-import * as S from "../../css/style.styles";
+import * as S from "../../css/Style.styles";
 import DaumPostcodeEmbed, { Address } from "react-daum-postcode";
 import Header from "../components/Header";
 

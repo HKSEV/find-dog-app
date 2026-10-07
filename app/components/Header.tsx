@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react";
-import * as S from "../../css/style.styles";
+import * as S from "../../css/Style.styles";
 
 interface HeaderProps {
   title: string;

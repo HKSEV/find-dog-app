@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import StyledComponentsRegistry from "@/lib/registry";
 import { GlobalStyle } from "../css/GlobalStyles";
+import { ModalProvider } from "./components/contexts/ModalContext";
 
 export const metadata: Metadata = {
   title: "어서 찾아주개",
@@ -36,10 +37,12 @@ export default function RootLayout({
       </head>
 
       <body id="page-top" className="bg-primary text-gray-800">
-        <GlobalStyle/>
-        <StyledComponentsRegistry>
-          {children}
-        </StyledComponentsRegistry>
+        <ModalProvider>
+          <GlobalStyle/>
+          <StyledComponentsRegistry>
+            {children}
+          </StyledComponentsRegistry>
+        </ModalProvider>
       </body>
     </html>
   );

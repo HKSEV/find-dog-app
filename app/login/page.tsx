@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react";
-import * as S from "../../css/style.styles";
+import * as S from "../../css/Style.styles";
 import Header from "../components/Header";
 
 export default function LoginPage() {
@@ -24,11 +24,25 @@ export default function LoginPage() {
       });
 
       if (res.ok) {
-        const userData = await res.json();
-        // 추가
+        // const userData = await res.json();
+        // // 추가
+        // localStorage.setItem("user", JSON.stringify(userData));
+        // alert(`환영합니다, ${userData.nickname}님!`);
+        // window.location.href = "/mypage";
+        // 💡 응답 본문이 비어있더라도 에러가 나지 않도록 text로 먼저 받습니다.
+        const text = await res.text();
+        const userData = text ? JSON.parse(text) : {};
+        
+        // 백엔드에서 내려준 JWT 토큰을 저장합니다.
+        if (userData.token) {
+            localStorage.setItem("token", userData.token);
+        }
+        
+        // 회원 정보도 함께 저장
         localStorage.setItem("user", JSON.stringify(userData));
-        alert(`환영합니다, ${userData.nickname}님!`);
-        window.location.href = "/mypage";
+
+        alert(`환영합니다, ${userData.nickname || "회원"}님!`);
+        window.location.href = "/";
       }
       else {
         alert("이메일 또는 비밀번호가 일치하지 않습니다.");

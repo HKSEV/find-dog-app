@@ -16,71 +16,66 @@ import {
   BookOpen,
   User
 } from "lucide-react";
-import * as S from "@/css/style.styles";
+import useModal from "../components/contexts/ModalContext";
+import * as S from "@/css/Style.styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-interface MissingAnimal {
-  id: number;
-  status: string;
-  breed: string;
-  gender: string;
-  age: string;
-  weight: string;
-  color: string;
-  rescueLocation: string;
-  regDate: string;
-  imageUrl: string;
-  content: string;
-};
-
 export default function MissingPage() {
-  const [animalList, setAnimalList] = useState<MissingAnimal[]>([]);
+  const {openModal, closeModal} = useModal();
+  const [animalList, setAnimalList] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isAlertOn, setIsAlertOn] = useState<boolean>(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    content: "",
+    breed: "",
+    gender: "수컷",
+    age: "",
+    weight: "",
+    color: "",
+    rescueLocation: "",
+  });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/missing-animals");
-        setAnimalList(response.data)
-      } catch (err) {
-        console.error("실종/제보 데이터를 불러오는데 실패했습니다.", err);
-        // 테스트용 더미 데이터
-        setAnimalList([
-          {
-            id: 1,
-            status: "실종",
-            breed: "포메라니안",
-            gender: "암컷",
-            age: "나이 모름",
-            weight: "몸무게 모름",
-            color: "흰색",
-            rescueLocation: "충남 태안군 근흥면 정죽리 지령산...",
-            regDate: "2026-10-02",
-            imageUrl: "https://placehold.co/300x300",
-            content: "겁이 많고 낯을 가립니다."
-          },
-          {
-            id: 2,
-            status: "실종",
-            breed: "포메라니안",
-            gender: "수컷",
-            age: "3살",
-            weight: "6kg",
-            color: "흰색",
-            rescueLocation: "정왕역 인근 S-oil주유소 마지막 목격",
-            regDate: "2026-09-23",
-            imageUrl: "https://placehold.co/300x300",
-            content: "결정적 제보 시 사례하겠습니다."
-          }
-        ]);
-      } finally {
-        setIsLoading(false);
-      };
-    };
     fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("/api/missing-posts");
+      setAnimalList(response.data)
+    } catch (err) {
+      console.error("실종/제보 데이터를 불러오는데 실패했습니다.", err);
+    } finally {
+      setIsLoading(false);
+    };
+  };
+
+  const handleChange = (e: any) => {
+    const {name, value} = e.target;
+    setFormData((prev) => ({...prev, [name]: value}));
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file)
+      setSelectedFile(file);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await axios.post("/api/missing-posts", formData, {withCredentials: true});
+      alert("실종 신고가 등록되었습니다.");
+      fetchData();
+      //modalopen
+    } catch (err) {
+      console.error("등록 실패: ", err);
+      alert("글 등록 실패했습니다.");
+    };
+  };
 
   return (
     <S.AppWraper>
@@ -141,6 +136,8 @@ export default function MissingPage() {
         <S.CardGrid>
           {isLoading ? (
             <S.LoadingText>데이터를 불러오는 중입니다...</S.LoadingText>
+          ) : animalList.length === 0 ? (
+            <S.LoadingText>등록된 실종 신고가 없습니다.</S.LoadingText>
           ) : (
             animalList.map((item) => (
               <S.Card key={item.id}>
@@ -165,7 +162,9 @@ export default function MissingPage() {
                   </S.LocationRow>
                   <S.DateRow>
                     <Calendar size={14} color="#666"/>
-                    <S.DateText>{item.regDate}</S.DateText>
+                    <S.DateText>
+                      {item.createdAt ? item.createdAt.substring(0, 10) : ""}
+                    </S.DateText>
                   </S.DateRow>
                 </S.CardBody>
               </S.Card>
@@ -174,7 +173,21 @@ export default function MissingPage() {
         </S.CardGrid>
 
         {/* 글쓰기 플로팅 버튼 */}
-        <S.FloatingWriteButton>
+        <S.FloatingWriteButton
+        onClick={() => {
+          setFormData({
+            title: "",
+            content: "",
+            breed: "",
+            gender: "수컷",
+            age: "",
+            weight: "",
+            color: "",
+            rescueLocation: "",
+          });
+          setSelectedFile(null);
+          openModal("실종/제보 글쓰기", "등록하기", fetchData);
+        }}>
           <Plus size={20} color="#fff"/>
           <span>글쓰기</span>
         </S.FloatingWriteButton>

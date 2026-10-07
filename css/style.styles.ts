@@ -655,3 +655,4 @@ export const YoutubePlayIcon = styled(PlayArrowIcon)`
 // motion
 export * from "./client/Shelter.styles";
 export * from "./client/MissingReport.styles";
+export * from "./modal/Modal.styles";

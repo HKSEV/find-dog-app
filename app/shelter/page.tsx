@@ -1,9 +1,16 @@
+// 1. 실종 신고를 할수 있는것..
+// 2. 로그인을 한 유저만 글쓰기 작성할수 있게..쓰기,수정,삭제
+// 3. 이미지나 영상을 선택해서 등록할수 있게..
+// 4. 다른 유저가 신고나 제보를 실시간을 받을수 있게..토스트 팝업을 볼수 있게
+// 5. 페이징 대신에 겟수가 있는 만큼 인피니티 스크롤..
+// 6. 실종후 찾으면 완료처리를 표시하고 리스트에 내려가게..
+
 "use client"
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
-import * as S from "@/css/style.styles";
+import * as S from "@/css/Style.styles";
 // import Header from "../components/Header";
 import Footer from "../components/Footer";
 // MUI
